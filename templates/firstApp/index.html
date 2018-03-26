@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load staticfiles %} <!-- Lets Django Know We Want to Load Static Files -->
+{% load staticfiles %}
 
 
 <html lang="en">
@@ -7,12 +7,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tevin Coding Page</title>
+    <title>Displaying Data</title>
     <link rel="stylesheet" href="{%static 'css/style.css' %}">
 </head>
-<body>
-    <h1>Hello, This is a Picture of Me Coding</h1>
-    <img src="{%static 'images/tevin-coding.jpg' %}" alt="Tevin Coding">
-    
+<body>  
+    <h1>Welcome to Displaying Database Info in Django</h1>
+    <h2>Here are the access records</h2>
+
+    <div class="djangTwo">
+        {% if access_records %}
+            <table>
+                <thead>
+                    <th>Site Name</th>
+                    <th>Date Accessed</th>
+                </thead>
+
+                {% for acc in access_records %}
+                <tr>
+                    <td>{{ acc.name }}</td>
+                    <td>{{ acc.date }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No Access Records Found</p>
+        {% endif %}
+        
+    </div>
+
 </body>
 </html>
