@@ -11,26 +11,32 @@
     <link rel="stylesheet" href="{%static 'css/style.css' %}">
 </head>
 <body>  
-    <h1>Welcome to Displaying Database Info in Django</h1>
+    <h1>Welcome to Displaying Database Info in Django man</h1>
     <h2>Here are the access records</h2>
 
     <div class="djangTwo">
-        {% if access_records %}
+        {% if anime %}
             <table>
                 <thead>
-                    <th>Site Name</th>
-                    <th>Date Accessed</th>
+                    <th>Anime Name</th>
+                    <th>Genre(s)</th>
+                    <th>Type</th>
+                    <th>Rating</th>
+                    <th>Members</th>
                 </thead>
 
-                {% for acc in access_records %}
+                {% for an in anime %}
                 <tr>
-                    <td>{{ acc.name }}</td>
-                    <td>{{ acc.date }}</td>
+                    <td>{{ an.name }}</td>
+                    <td>{{ an.genre }}</td>
+                    <td>{{ an.animeType }}</td>
+                    <td>{{ an.rating }}</td>
+                    <td>{{ an.members }}</td>
                 </tr>
                 {% endfor %}
             </table>
         {% else %}
-            <p>No Access Records Found</p>
+            <p>No Anime Found</p>
         {% endif %}
         
     </div>
