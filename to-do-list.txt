@@ -1,0 +1,6 @@
+Styles: Use Bootstrap to add Styles
+Images: Place a different image for each genre / type
+View: Detail Screen for each anime
+Admin: Customize admin area (possibly add form to enter anime)
+Bonus: Modal Window
+
