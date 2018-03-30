@@ -1,45 +1,16 @@
 from django.db import models
 
 # Create your models here.
-class Topic(models.Model):
-    top_name = models.CharField(max_length = 264, unique = True)
-
-    def __str__(self):
-        return self.top_name
-
-
-class Webpage(models.Model):
-    topic = models.ForeignKey('Topic', on_delete = models.CASCADE,)
-    name = models.CharField(max_length = 264, unique = True)
-    url = models.URLField(unique = True)
-
-    def __str__(self):
-        return self.name
-
-
-class AccessRecord(models.Model):
-    name = models.ForeignKey('Webpage', on_delete = models.CASCADE,)
-    date = models.DateField()
-
-    def __str__(self):
-        return str(self.date)
-
-class User(models.Model):
-    firstName = models.CharField(max_length = 30)
-    lastName = models.CharField(max_length = 30)
-    email = models.EmailField()
-
-    def __str__(self):
-        return str(self.email)
-
-
 class Anime(models.Model):
-    animeId = models.CharField(max_length = 100,unique = True)
+    animeId = models.CharField(max_length = 100,unique = True) ##Ideally should be unique
     name = models.CharField(max_length = 500)
     genre = models.CharField(max_length = 500)
     animeType = models.CharField(max_length = 500)
+    episodes = models.CharField(max_length = 10)
     rating = models.CharField(max_length = 500)
     members = models.CharField(max_length = 500)
-
+    #poster = models.ImageField() ##To store images retrieved by Google Search
+    #----All data fields are stored as CharField due to possible inconsistencies in anime.csv file ---#
+    
     def __str__(self):
         return str(self.name)
