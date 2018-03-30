@@ -1,0 +1,22 @@
+{
+  "name": "webproga2",
+  "version": "1.0.0",
+  "description": "Web Programming and Technologies\r This program reads information about various anime from a csv file and displays it to the screen, as well as allowing authorized users to edit and add records.",
+  "main": "index.js",
+  "scripts": {
+    "sassCompile": "node-sass static/sass/main.scss static/css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TevinAchong/webProgA2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TevinAchong/webProgA2/issues"
+  },
+  "homepage": "https://github.com/TevinAchong/webProgA2#readme",
+  "devDependencies": {
+    "node-sass": "^4.8.3"
+  }
+}
