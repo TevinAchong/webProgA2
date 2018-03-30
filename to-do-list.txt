@@ -3,4 +3,5 @@ Images: Place a different image for each genre / type
 View: Detail Screen for each anime
 Admin: Customize admin area (possibly add form to enter anime)
 Bonus: Modal Window
+Static Files: Fix Issue of Static files not being detected
 
