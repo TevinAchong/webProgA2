@@ -9,10 +9,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Displaying Data</title>
     <link rel="stylesheet" href="{%static "css/style.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
 </head>
 <body>  
-    <h1>List of Anime</h1>
-    <img src="{%static "images/tevin-coding.jpg" %}" alt="">
+    <header class="header">
+        <h1 class="header__heading">Anime Lister</h1>
+    </header>
+
+    <div class="introvid">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Df0bZA6IcRE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
     <div class="djangTwo">
         {% if anime %}
             <table>
@@ -25,12 +33,12 @@
                 </thead>
 
                 {% for an in anime %}
-                <tr>
-                    <td>{{ an.name }}</td>
-                    <td>{{ an.genre }}</td>
-                    <td>{{ an.animeType }}</td>
-                    <td>{{ an.rating }}</td>
-                    <td>{{ an.members }}</td>
+                <tr class="anime">
+                    <td class="anime-info">{{ an.name }}</td>
+                    <td class="anime-info">{{ an.genre }}</td>
+                    <td class="anime-info">{{ an.animeType }}</td>
+                    <td class="anime-info">{{ an.rating }}</td>
+                    <td class="anime-info">{{ an.members }}</td>
                 </tr>
                 {% endfor %}
             </table>
