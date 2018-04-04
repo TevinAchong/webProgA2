@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
+import django.template
+import django.http
 from django.http import HttpResponse
 from firstApp.models import Anime
 from . import forms
@@ -40,10 +42,6 @@ def search(request):
         return render(request,"firstApp/index.html",{})   
     
     
-    
-
-
-
 def form_name_view(request):
     form = forms.animeForm()
     

@@ -15,77 +15,92 @@
     <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
 </head>
 <body>  
-    <!-- <header class="header">
-        <h1 class="header__heading">Anime Lister</h1>
+    <header class="headerr">
+        <h1 class="headerr__heading">Anime!!</h1>
     </header>
-
-    <div class="introvid">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/Df0bZA6IcRE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div> -->
-
-        
     
-        <h4 style = 'color: red;'> Note: Some Information may be inaccurate due to naming inconsistencies in dataset. </h4>
-        <!--Trying Search Functionality -->
-        <form name="myform" method="POST" action="{% url 'search' %}">  
-            {% csrf_token %}
-            <input type="text" name="search" placeholder="Search" />
-        </form> 
+    <!-- Sticky Header -->    
+    <div class="notice header" id = "myHeader">
+        <center><h4> Note: Some Information may be inaccurate due to naming inconsistencies in dataset. </h4></center>
+    </div>
+    <script>
+        window.onscroll = function() {myFunction()};
         
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
         
-        {% if anime %}
-            {% for an in anime %}
-                
-                <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 3 -->
-                    <center><object data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px; border : 1px solid black; position : relative">
-                        <center><img src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative"></center> <!-- If the image is unavailable the placeholder image will be used -->
-                    </object></center>
-                    <div style="text-align : center;">Name: {{ an.name }}</div>
-                    <div style="text-align : center;">Genre(s): {{ an.genre }}</div>
-                    <div style="text-align : center;">Type: {{ an.animeType }}</div>
-                    <div style="text-align : center;">Rating: {{ an.rating }}</div>
-                    <div style="text-align : center;">Members: {{ an.members }}</div>
-                </div>
-            {% endfor %}
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky");
+            } else {
+            header.classList.remove("sticky");
+            }
+        }
+    </script>
 
-            <!-- Classes below use bootstrap 3 to format the paginated pages and menus -->
+    <!--Trying Search Functionality -->
+    <!-- <form name="myform" method="POST" action="{% url 'search' %}">  
+        {% csrf_token %}
+        <input type="text" name="search" placeholder="Search" />
+    </form>  -->
+
+    <!-- <a href="{% url 'admin:index' %}" class="add-link">Add New Anime</a> -->
+    
+    
+    {% if anime %}
+        {% for an in anime %}
             
-            {% if anime.has_other_pages %}
-                <ul class="pagination">
-                    {% if anime.has_previous %}
-                        <li><a href="?page={{ anime.previous_page_number }}"> &laquo; </a></li>
+            <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 4 -->
+                <center><object data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative">
+                    <center><a href="?page=an.name"><img src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative"></a></center> <!-- If the image is unavailable the placeholder image will be used -->
+                </object></center>
+                <div style="text-align : center;">Name: {{ an.name }}</div>
+                <div style="text-align : center;">Genre(s): {{ an.genre }}</div>
+                <div style="text-align : center;">Type: {{ an.animeType }}</div>
+                <div style="text-align : center;">Rating: {{ an.rating }}</div>
+                <div style="text-align : center;">Members: {{ an.members }}</div>
+            </div>
+
+        {% endfor %}
+
+        <!-- Classes below use bootstrap 3 to format the paginated pages and menus -->
+        
+        {% if anime.has_other_pages %}
+            <ul class="pagination">
+                {% if anime.has_previous %}
+                    <li><a href="?page={{ anime.previous_page_number }}"> &laquo; </a></li>
+                {% else %}
+                    <li class="disabled"><span> &laquo; </span></li>
+                {% endif %}
+                {%for i in anime.paginator.page_range %}
+                    {%if anime.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
                     {% else %}
-                        <li class="disabled"><span> &laquo; </span></li>
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>  
                     {% endif %}
-                    {%for i in anime.paginator.page_range %}
-                        {%if anime.number == i %}
-                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                        {% else %}
-                            <li><a href="?page={{ i }}">{{ i }}</a></li>  
-                        {% endif %}
-                    {% endfor %}
-                    {% if anime.has_next %}
-                        <li><a href="?page={{ anime.next_page_number }}"> &raquo; </a></li>
-                    {% else %}
-                        <li class="disabled"><span> &raquo; </span></li>
-                    {% endif %}
-                </ul>
-            {% endif %}
-
-
-            {% if animesSearch %}
-                {%for an in animesSearch %}
-                    <!--Upon successful search book image with hyperlink appears -->
-                    <img src="{{ animesSearch.imageUrl }}" alt="No Image"></a>
-                    <p>{{an.name}}</p>
-                    <p>Rs.{{an.rating}}</p>   
-                {%endfor%}
-            {% endif %}
-
-
-        {% else %}
-            <p>No Anime Found</p>
+                {% endfor %}
+                {% if anime.has_next %}
+                    <li><a href="?page={{ anime.next_page_number }}"> &raquo; </a></li>
+                {% else %}
+                    <li class="disabled"><span> &raquo; </span></li>
+                {% endif %}
+            </ul>
         {% endif %}
+
+
+        {% if animesSearch %}
+            {%for an in animesSearch %}
+                <!--Upon successful search book image with hyperlink appears -->
+                <img src="{{ animesSearch.imageUrl }}" alt="No Image"></a>
+                <p>{{an.name}}</p>
+                <p>Rs.{{an.rating}}</p>   
+            {%endfor%}
+        {% endif %}
+
+
+    {% else %}
+        <p>No Anime Found</p>
+    {% endif %}
 
       
    
