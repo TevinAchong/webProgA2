@@ -18,7 +18,5 @@
     font-family: 'Press Start 2P', cursive;
     border: 1px solid black; }
 
-/* Anime Info Section */
-.anime-info {
-  color: pink;
-  background: purple; }
+.col-1-of-3 {
+  width: 33%; }

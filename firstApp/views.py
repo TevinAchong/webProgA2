@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from firstApp.models import Anime
 from . import forms
+#from bs4 import BeautifulSoup
 # Create your views here.
 
 def index(request):
@@ -14,12 +15,14 @@ def index(request):
 def form_name_view(request):
     form = forms.animeForm()
     
-    if request.method == 'POST':
-        form = forms.animeForm(request.POST)
+    #User clicked submit
+    if request.method == 'POST': 
+        form = forms.animeForm(request.POST)##storing the anime form values in the variable form 
 
         if form.is_valid():
             print("VALIDATION SUCCESS")
-            print("id: " +form.cleaned_data['animeID'])
+            ##Just printing the values submitted to the command line
+            print("id: " +form.cleaned_data['animeID']) 
             print("Name: " +form.cleaned_data['name'])
             print("Genre: " +form.cleaned_data['genre'])
             print("Type: " +form.cleaned_data['Atype'])
@@ -27,4 +30,4 @@ def form_name_view(request):
             print("Rating: " +form.cleaned_data['rating'])
             print("Members: " +form.cleaned_data['members'])
 
-    return render(request, 'firstApp/form.html', {'form': form})
+    return render(request, 'firstApp/form.html', {'form': form}) ##reloading the form page after submission 
