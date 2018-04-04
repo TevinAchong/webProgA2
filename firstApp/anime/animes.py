@@ -9,7 +9,7 @@ class Anime(models.Model):
     episodes = models.CharField(max_length = 10)
     rating = models.CharField(max_length = 500)
     members = models.CharField(max_length = 500)
-    #poster = models.ImageField() ##To store images retrieved by Google Search
+    imageUrl = models.CharField(max_length = 500)
     #----All data fields are stored as CharField due to possible inconsistencies in anime.csv file ---#
     
 
