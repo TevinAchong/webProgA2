@@ -12,5 +12,6 @@ class Anime(models.Model):
     imageUrl = models.CharField(max_length = 500)
     #----All data fields are stored as CharField due to possible inconsistencies in anime.csv file ---#
     
+
     def __str__(self):
         return str(self.name)
