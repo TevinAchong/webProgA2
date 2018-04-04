@@ -1,17 +1,7 @@
-<<<<<<< HEAD
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .anime import Anime
 from .anime import animeForm
-=======
-from django.shortcuts import render, render_to_response
-import django.template
-import django.http
-from django.http import HttpResponse
-from firstApp.models import Anime
-from . import forms
-#from bs4 import BeautifulSoup
->>>>>>> 17c1c9b120ab02698df9365d6a43677dcdf53045
 # Create your views here.
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger ##Importing Modules for Pagination
 
@@ -52,7 +42,6 @@ def search(request):
 def form_name_view(request):
     form = animeForm()
     
-<<<<<<< HEAD
     if request.method == 'POST':
         form = animeForm(request.POST)
 
@@ -68,21 +57,5 @@ def form_name_view(request):
 
             form.save()
             return HttpResponseRedirect("/")
-=======
-    #User clicked submit
-    if request.method == 'POST': 
-        form = forms.animeForm(request.POST)##storing the anime form values in the variable form 
-
-        if form.is_valid():
-            print("VALIDATION SUCCESS")
-            ##Just printing the values submitted to the command line
-            print("id: " +form.cleaned_data['animeID']) 
-            print("Name: " +form.cleaned_data['name'])
-            print("Genre: " +form.cleaned_data['genre'])
-            print("Type: " +form.cleaned_data['Atype'])
-            print("Episodes: " +form.cleaned_data['episodes'])
-            print("Rating: " +form.cleaned_data['rating'])
-            print("Members: " +form.cleaned_data['members'])
->>>>>>> 17c1c9b120ab02698df9365d6a43677dcdf53045
 
     return render(request, 'firstApp/form.html', {'form': form}) ##reloading the form page after submission 

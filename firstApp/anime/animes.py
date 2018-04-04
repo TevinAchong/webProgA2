@@ -12,5 +12,6 @@ class Anime(models.Model):
     #poster = models.ImageField() ##To store images retrieved by Google Search
     #----All data fields are stored as CharField due to possible inconsistencies in anime.csv file ---#
     
+
     def __str__(self):
         return str(self.name)
