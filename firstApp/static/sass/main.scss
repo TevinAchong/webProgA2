@@ -2,9 +2,14 @@
     margin : 0; 
     padding : 0;
     
-
 }
 
+body {
+    font-family: 'IBM Plex Mono', monospace !important;
+}
+
+
+ 
 .header {
 
     height : 100vh; 
@@ -28,7 +33,3 @@
 }
 
 
-
-.col-1-of-3 {
-    width : 33%;
-}

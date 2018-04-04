@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0; }
 
+body {
+  font-family: 'IBM Plex Mono', monospace !important; }
+
 .header {
   height: 100vh;
   background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.8)), url("../images/crossover-anime.png");
@@ -17,6 +20,3 @@
     transform: translate(-50%, -50%);
     font-family: 'Press Start 2P', cursive;
     border: 1px solid black; }
-
-.col-1-of-3 {
-  width: 33%; }

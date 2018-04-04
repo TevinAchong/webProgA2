@@ -35,9 +35,10 @@ def addImageURL(animeName):
     
     header={'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
 
-    soup = get_soup(url,header)
+    
 
     try:
+        soup = get_soup(url,header)
         a = soup.find("div",{"class":"rg_meta"})
         link = json.loads(a.text)["ou"]
         #Type =  json.loads(a.text)["ity"]
@@ -72,7 +73,7 @@ def populateAnime():
 if __name__ == '__main__':
     print("Adding anime to Database....")
     populateAnime()
-    #addImageURL('One Piece: Episode of Merry - Mou Hitori no Nakama no Monogatari')
+    #addImageURL('MÄR')
 
 
     

@@ -4,12 +4,44 @@ from firstApp.models import Anime
 from . import forms
 #from bs4 import BeautifulSoup
 # Create your views here.
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger ##Importing Modules for Pagination
 
 def index(request):
     anime_list = Anime.objects.order_by('name') #--Storing all Anime in a List--#
-    anime_dict = {'anime' : anime_list} #---Saving the list as the value in a dictionary to be referenced by the template via the key ---#
+    
+    #---Trying Pagination---#
+    
+    page = request.GET.get('page', 1)
 
-    return render(request, 'firstApp/index.html', context = anime_dict)
+    paginator = Paginator(anime_list, 30)
+    try:
+        animes = paginator.page(page)
+    except PageNotAnInteger:
+        animes = paginator.page(1)
+    except EmptyPage:
+        animes = paginator.page(paginator.num_pages)
+
+    #anime_dict = {'anime' : anime_list} #---Saving the list as the value in a dictionary to be referenced by the template via the key ---#
+
+    return render(request, 'firstApp/index.html', {'anime' : animes})
+
+
+
+
+def search(request):        
+    if request.method == 'GET':      
+        anime_name =  request.GET.getlist('search')      
+        try:
+            status = Anime.objects.filter(name__icontains = anime_name)
+        except Anime.DoesNotExist:
+            status = None
+        return render(request,"firstApp/index.html", {"animesSearch" : status})
+    else:
+        return render(request,"firstApp/index.html",{})   
+    
+    
+    
+
 
 
 def form_name_view(request):
