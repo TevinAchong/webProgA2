@@ -12,6 +12,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
+    <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
 </head>
 <body>  
     <!-- <header class="header">
@@ -35,7 +36,7 @@
         {% if anime %}
             {% for an in anime %}
                 
-                <div class="col-sm-4"> <!-- Bootstrap class to align elements into grid of 3 -->
+                <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 3 -->
                     <center><object data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px; border : 1px solid black; position : relative">
                         <center><img src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative"></center> <!-- If the image is unavailable the placeholder image will be used -->
                     </object></center>
@@ -73,12 +74,12 @@
 
 
             {% if animesSearch %}
-            {%for an in animesSearch %}
-                <!--Upon successful search book image with hyperlink appears -->
-                <img src="{{animesSearch.imageUrl}}" alt="No Image"></a>
-                <p>{{an.name}}</p>
-                <p>Rs.{{an.rating}}</p>   
-            {%endfor%}
+                {%for an in animesSearch %}
+                    <!--Upon successful search book image with hyperlink appears -->
+                    <img src="{{ animesSearch.imageUrl }}" alt="No Image"></a>
+                    <p>{{an.name}}</p>
+                    <p>Rs.{{an.rating}}</p>   
+                {%endfor%}
             {% endif %}
 
 
