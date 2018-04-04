@@ -5,6 +5,52 @@ import django
 django.setup()
 from firstApp.models import Anime
 
+from bs4 import BeautifulSoup
+import requests
+import re
+from urllib.request import urlopen
+from urllib.request import Request
+import os
+from http.cookiejar import CookieJar
+import json
+import re
+
+
+
+def get_soup(url,header):
+    return BeautifulSoup(urlopen(Request(url,headers=header)),'html.parser')
+
+def addImageURL(animeName):
+    if animeName.isalnum():
+        query = animeName
+    else:
+        query = re.sub('[^A-Za-z0-9]+', '', animeName)
+    # you can change the query for the image  here
+    print('Query: ',query)
+    image_type="ActiOn"
+    query= query.split()
+    query='+'.join(query)
+    url="https://www.google.co.in/search?q="+query+"&source=lnms&tbm=isch"
+    #print(url)
+    
+    header={'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
+
+    
+
+    try:
+        soup = get_soup(url,header)
+        a = soup.find("div",{"class":"rg_meta"})
+        link = json.loads(a.text)["ou"]
+        #Type =  json.loads(a.text)["ity"]
+        ActualImage = (link)  #contains the link for Large original images, type of  image
+
+        print(ActualImage)
+        return (ActualImage)
+
+    except:
+        return '{\%\static "images/placeholder.png" %}'
+
+
 
 #-- Adding Anime Entries to the SQLite DB --#
 def populateAnime():
@@ -13,7 +59,7 @@ def populateAnime():
         rowCount = 0 ##----Counter to ignore header section of anime.csv file---##
         for row in animeReader:
             if rowCount != 0:
-                a = Anime.objects.get_or_create(animeId = row[0], name = row[1], genre = row[2], animeType = row[3], episodes = row[4], rating = row[5], members = row[6])[0]
+                a = Anime.objects.get_or_create(animeId = row[0], name = row[1], genre = row[2], animeType = row[3], episodes = row[4], rating = row[5], members = row[6], imageUrl = addImageURL(row[1]))[0]
                 a.save() ##Saving Anime Object to database
                 print(row) #--Just as a reference to see where the process has reached
 
@@ -27,6 +73,7 @@ def populateAnime():
 if __name__ == '__main__':
     print("Adding anime to Database....")
     populateAnime()
+    #addImageURL('MÄR')
 
 
     
