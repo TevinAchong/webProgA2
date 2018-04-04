@@ -51,8 +51,8 @@
         {% for an in anime %}
             
             <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 4 -->
-                <center><object data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative">
-                    <center><a href="?page=an.name"><img src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative"></a></center> <!-- If the image is unavailable the placeholder image will be used -->
+                <center><object data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; border-radius : 5px;">
+                    <center><a href="?page=an.name"><img src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; border-radius : 5px;"></a></center> <!-- If the image is unavailable the placeholder image will be used -->
                 </object></center>
                 <div style="text-align : center;">Name: {{ an.name }}</div>
                 <div style="text-align : center;">Genre(s): {{ an.genre }}</div>
