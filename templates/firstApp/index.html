@@ -18,12 +18,22 @@
 </head>
 <body>  
     <header class="headerr">
-        <h1 class="headerr__heading">Anime!!</h1>
+        <!-- <h1 class="headerr__heading">Anime!!</h1> -->
+        <!--Trying Search Functionality -->
+        <form name="myform" method="POST" action="{% url 'search' %}" class="headerr__heading">  
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search for Anime..." class="headerr__heading--search"/>
+        </form> 
+        
     </header>
     
     <!-- Sticky Header -->    
     <div class="notice header" id = "myHeader">
         <center><h4> Note: Some Information may be inaccurate due to naming inconsistencies in dataset. </h4></center>
+        <form name="myform" method="POST" action="{% url 'search' %}" class="headerr__heading">  
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search for Anime..." class="headerr__heading--search"/>
+        </form> 
     </div>
     <script>
         window.onscroll = function() {myFunction()};
@@ -40,11 +50,7 @@
         }
     </script>
 
-    <!--Trying Search Functionality -->
-    <form name="myform" method="POST" action="{% url 'search' %}">  
-        {% csrf_token %}
-        <input type="text" name="search" placeholder="Search" />
-    </form> 
+    
 
     <!-- <a href="{% url 'admin:index' %}" class="add-link">Add New Anime</a> -->
     
@@ -53,9 +59,10 @@
         {% for an in anime %}
             
             <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 4 -->
-                <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; margin-bottom : 50px;">
-                    <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; margin-bottom : 50px;"></center> <!-- If the image is unavailable the placeholder image will be used -->
+                <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);">
+                    <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);"></center> <!-- If the image is unavailable the placeholder image will be used -->
                 </object></center>
+                <div style="text-align : center;  margin-bottom : 50px;">{{ an.name }}</div>
             </div>
 
 
@@ -117,5 +124,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- jQuery library -->
 <script src="{%static "js/modal.js" %}"></script>
+
 </body>
 </html>
