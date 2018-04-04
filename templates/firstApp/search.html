@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search</title>
+</head>
+<body>
+
+    <h1>Search Page</h1>
+
+    {% if animesSearch %}
+        {%for an in animesSearch %}
+            <!--Upon successful search book image with hyperlink appears -->
+            <img src="{{ an.imageUrl }}" alt="No Image"></a>
+            <p>{{an.name}}</p>
+            <p>{{an.rating}}</p>   <!-- Rs.-->
+        {%endfor%}
+    {% endif %}
+</body>
+</html>

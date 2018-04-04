@@ -22,5 +22,5 @@ urlpatterns = [
     path(r'', views.index, name='index'),
     path('admin/', admin.site.urls),
     url(r'^formpage/', views.form_name_view, name='form_name'),
-    url(r'^$', views.search, name='search'),
+    url(r'^search', views.search, name='search'),
 ]

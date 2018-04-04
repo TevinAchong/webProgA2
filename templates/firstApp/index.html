@@ -39,10 +39,10 @@
     </script>
 
     <!--Trying Search Functionality -->
-    <!-- <form name="myform" method="POST" action="{% url 'search' %}">  
+    <form name="myform" method="POST" action="{% url 'search' %}">  
         {% csrf_token %}
         <input type="text" name="search" placeholder="Search" />
-    </form>  -->
+    </form> 
 
     <!-- <a href="{% url 'admin:index' %}" class="add-link">Add New Anime</a> -->
     
@@ -88,14 +88,7 @@
         {% endif %}
 
 
-        {% if animesSearch %}
-            {%for an in animesSearch %}
-                <!--Upon successful search book image with hyperlink appears -->
-                <img src="{{ animesSearch.imageUrl }}" alt="No Image"></a>
-                <p>{{an.name}}</p>
-                <p>Rs.{{an.rating}}</p>   
-            {%endfor%}
-        {% endif %}
+        
 
 
     {% else %}

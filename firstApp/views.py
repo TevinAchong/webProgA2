@@ -28,17 +28,26 @@ def index(request):
 
 
 def search(request):        
-    if request.method == 'GET':      
-        anime_name =  request.GET.getlist('search')      
+    if request.method == 'POST':      
+
+
+        anime_name = request.POST.getlist('search')
+        #anime_name =  request.GET.getlist('search')
+        print(anime_name[0])     
         try:
-            status = Anime.objects.filter(name__icontains = anime_name)
+            status = Anime.objects.filter(name__icontains = anime_name[0])
         except Anime.DoesNotExist:
             status = None
-        return render(request,"firstApp/index.html", {"animesSearch" : status})
+        return render(request,"firstApp/search.html", {"animesSearch" : status})
+
+
     else:
-        return render(request,"firstApp/index.html",{})   
+        return render(request,"firstApp/404.html", {})   
     
     
+
+
+
 def form_name_view(request):
     form = animeForm()
     
