@@ -32,8 +32,16 @@ body {
 .add-link {
   margin: 20px; }
 
+<<<<<<< HEAD
+/* Anime Info Section */
+.anime-info {
+  color: pink;
+  background: purple; }
+
+=======
 .sticky {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 9999; }
+>>>>>>> 17c1c9b120ab02698df9365d6a43677dcdf53045

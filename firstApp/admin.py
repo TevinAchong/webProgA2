@@ -1,5 +1,5 @@
 from django.contrib import admin
-from firstApp.models import Anime
+from .anime import Anime
 # Register your models here.
 
 
