@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .anime import Anime
 from .anime import animeForm
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger ##Importing Modules for Pagination
 
@@ -68,3 +69,36 @@ def form_name_view(request):
             return HttpResponseRedirect("/")
 
     return render(request, 'firstApp/form.html', {'form': form}) ##reloading the form page after submission 
+
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return HttpResponseRedirect('/')
+    
+    else:
+        form = UserCreationForm()
+
+        args = {'form':form}
+        return render(request, 'firstApp/register.html', args)
+
+# def viewAnime(request):
+#     args = {'user': request.user}
+#     return render(request, 'firstApp/animePage.html', args)
+
+# def editAnime(request):
+#     if request.method == 'POST':
+#         form = UserChangeForm(request.POST, instance=request.user)
+
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect('firstApp/animePage.html')
+#     else:
+#         form = UserChangeForm(instance=request.user)
+#         args = {'form': form }
+#         return render(request, 'firstApp/animePage.html', args)
+
