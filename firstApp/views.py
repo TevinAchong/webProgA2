@@ -86,9 +86,9 @@ def register(request):
         args = {'form':form}
         return render(request, 'firstApp/register.html', args)
 
-# def viewAnime(request):
-#     args = {'user': request.user}
-#     return render(request, 'firstApp/animePage.html', args)
+def viewAnime(request):
+    args = {'user': request.user}     
+    return render(request, 'firstApp/details.html', args)
 
 # def editAnime(request):
 #     if request.method == 'POST':

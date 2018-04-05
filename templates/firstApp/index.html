@@ -29,7 +29,7 @@
     
     <!-- Sticky Header -->    
     <div class="notice header" id = "myHeader">
-        <center><h4> Note: Some Information may be inaccurate due to naming inconsistencies in dataset. </h4></center>
+        <center><h4> Note: Some Information may be inaccurate due to naming inconsistencies in dataset. WARNING!!! MAY CONTAIN MATURE CONTENT </h4></center>
         <form name="myform" method="POST" action="{% url 'search' %}" class="headerr__heading">  
             {% csrf_token %}
             <input type="text" name="search" placeholder="Search for Anime..." class="headerr__heading--search"/>
@@ -53,7 +53,7 @@
         }
     </script>
 
-    <button type="button" class="btn btn-primary fixed-btn">Add New Anime</button>
+    <!-- <button type="button" class="btn btn-primary fixed-btn">Add New Anime</button> -->
     
     
     {% if anime %}
@@ -81,6 +81,7 @@
                     <div style="text-align : center;">Rating: {{ an.rating }}</div>
                     <div style="text-align : center;">Members: {{ an.members }}</div>
                     <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">Edit Anime</button></center></div>
+                    <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">View Details</button></center></div>
                 </div>
             </div>
 
