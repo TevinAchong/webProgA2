@@ -34,6 +34,9 @@
             {% csrf_token %}
             <input type="text" name="search" placeholder="Search for Anime..." class="headerr__heading--search"/>
         </form> 
+        
+        
+
     </div>
     <script>
         window.onscroll = function() {myFunction()};
@@ -49,9 +52,8 @@
             }
         }
     </script>
- 
 
-    <!-- <a href="{% url 'admin:index' %}" class="add-link">Add New Anime</a> -->
+    <button type="button" class="btn btn-primary fixed-btn">Add New Anime</button>
     
     
     {% if anime %}

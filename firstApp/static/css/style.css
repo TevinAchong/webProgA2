@@ -69,11 +69,11 @@ body {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 5% auto;
   /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 500px;
+  width: 900px;
   /* Could be more or less, depending on screen size */
   height: 700px; }
 
@@ -95,3 +95,9 @@ body {
 
 .myBtnObj:hover {
   cursor: pointer; }
+
+.fixed-btn {
+  position: fixed;
+  z-index: 20000;
+  top: 10%;
+  left: 80%; }

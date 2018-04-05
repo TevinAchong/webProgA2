@@ -8,21 +8,50 @@
     <title>Search</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{%static "css/style.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
+    <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
 
 
 </head>
 <body>
     <a href="{% url "index" %}"><i class="fa fa-home"></i></a>
-    <h1>Search Page</h1>
+    <h1>Search Results...</h1>
 
     {% if animesSearch %}
         {%for an in animesSearch %}
         <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 4 -->
-            <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; margin-bottom : 50px;">
-                <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; margin-bottom : 50px;"></center> <!-- If the image is unavailable the placeholder image will be used -->
+            <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)">
+                <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);"></center> <!-- If the image is unavailable the placeholder image will be used -->
             </object></center>
+            <div style="text-align : center;  margin-bottom : 50px;">{{ an.name }}</div>
+        </div>
+
+
+        <div id="{{ an.animeId }}" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                    <center><object class="myBtn" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; border-radius : 5px;">
+                        <center><img class="myBtn" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; border-radius : 5px;"></center> <!-- If the image is unavailable the placeholder image will be used -->
+                    </object></center>
+                <br/>
+                <div style="text-align : center;">Name: {{ an.name }}</div>
+                <div style="text-align : center;">Genre(s): {{ an.genre }}</div>
+                <div style="text-align : center;">Type: {{ an.animeType }}</div>
+                <div style="text-align : center;">Rating: {{ an.rating }}</div>
+                <div style="text-align : center;">Members: {{ an.members }}</div>
+                <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">Edit Anime</button></center></div>
+            </div>
         </div>
         {%endfor%}
     {% endif %}
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- jQuery library -->
+<script src="{%static "js/modal.js" %}"></script>
 </body>
 </html>
