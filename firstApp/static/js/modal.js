@@ -1,31 +1,26 @@
 // Get the modal
 //var modal = document.getElementById('myModal');
 var modal = document.getElementsByClassName('modal');
-console.log(modal.length);
 
 // Get the button that opens the modal
 var ObjBtn = document.getElementsByClassName("myBtnObj");
-console.log(ObjBtn.length);
+
 
 var plaBtn = document.getElementsByClassName("myBtnPla");
-console.log(plaBtn.length);
+
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close");
-console.log(span.length);
 
 // When the user clicks on the button, open the modal
-for (var i = 0; i < ObjBtn.length; i += 1) {
-    ObjBtn[i].onclick = function() {
-        console.log(i);
+function getId(objBtn_id) { //Retrieves the ID of the picture, and compares it to the ID of the modals, if a match is found, the modal is displayed
+    for (var i = 0; i < modal.length; i += 1) {
+        if (modal[i].id === objBtn_id) {
+            modal[i].style.display = "block";
+        }
     }
 }
 
-for (var i = 0; i < plaBtn.length; i += 1) {
-    plaBtn[i].onclick = function() {
-        console.log(plaBtn[i]);
-    }
-}
 
 // When the user clicks on <span> (x), close the modal
 for (var i = 0; i < span.length; i += 1) {

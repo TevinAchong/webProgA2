@@ -87,11 +87,15 @@ body {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 0 auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 500px; /* Could be more or less, depending on screen size */
     height : 700px;  
+    top : 50%; 
+    left : 50%; 
+    position : relative; 
+    transform: translate(-50%, -50%);
 }
 
 /* The Close Button */
@@ -108,3 +112,15 @@ body {
     text-decoration: none;  
     cursor: pointer;
 }
+
+.myBtnPla{
+    &:hover {
+        cursor: pointer;
+    }
+}  
+
+.myBtnObj{
+    &:hover {
+        cursor: pointer;
+    }
+}  
