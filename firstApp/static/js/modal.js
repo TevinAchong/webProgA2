@@ -21,8 +21,6 @@ for (var i = 0; i < ObjBtn.length; i += 1) {
     }
 }
 
-modal[29].style.display = "block";
-
 for (var i = 0; i < plaBtn.length; i += 1) {
     plaBtn[i].onclick = function() {
         console.log(plaBtn[i]);
