@@ -28,4 +28,6 @@ urlpatterns = [
     url(r'^login/$', login, {'template_name': 'firstApp/login.html'}),
     url(r'^logout/$', logout, {'template_name': 'firstApp/logout.html'}),
     url(r'^register/$', views.register, name='register'),
+    url(r'^details/$', views.viewAnime, name='details'),
+
 ]

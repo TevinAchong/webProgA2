@@ -80,8 +80,12 @@
                     <div style="text-align : center;">Type: {{ an.animeType }}</div>
                     <div style="text-align : center;">Rating: {{ an.rating }}</div>
                     <div style="text-align : center;">Members: {{ an.members }}</div>
-                    <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">Edit Anime</button></center></div>
-                    <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">View Details</button></center></div>
+                    <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">Edit Anime</button>
+                        <form name="detailsForm" method="POST" action="{% url 'details' %}" >  
+                            {% csrf_token %}
+                            <input type="submit" name="anime" value="{{an.animeId}}" placeholder="View Details"/>
+                        </form> 
+                       
                 </div>
             </div>
 

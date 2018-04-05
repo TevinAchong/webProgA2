@@ -87,8 +87,18 @@ def register(request):
         return render(request, 'firstApp/register.html', args)
 
 def viewAnime(request):
-    args = {'user': request.user}     
-    return render(request, 'firstApp/details.html', args)
+    #args = {'user': request.user}     
+    #return render(request, 'firstApp/details.html', args)
+         
+    aId = request.POST.get('anime')
+        
+    print(aId)     
+    
+    status = Anime.objects.filter(animeId = aId)
+    #status = Anime(name='anime_name', tagline='Bar')
+    
+    return render(request,"firstApp/details.html", {"animeObj" : status})
+
 
 # def editAnime(request):
 #     if request.method == 'POST':
