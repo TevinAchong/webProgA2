@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^formpage/', views.form_name_view, name='form_name'),
     url(r'^$', views.search, name='search'),
+    url(r'^view/',views.editAnime, name='edit')
 ]
