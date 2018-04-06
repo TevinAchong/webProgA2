@@ -100,7 +100,7 @@
 
         <!-- Classes below use bootstrap 3 to format the paginated pages and menus -->
         
-        {% if anime.has_other_pages %}
+        <!-- {% if anime.has_other_pages %}
             <ul class="pagination">
                 {% if anime.has_previous %}
                     <li><a href="?page={{ anime.previous_page_number }}"> &laquo; </a></li>
@@ -120,9 +120,31 @@
                     <li class="disabled"><span> &raquo; </span></li>
                 {% endif %}
             </ul>
-        {% endif %}
-
-
+        {% endif %} -->
+        
+        <br/><br/><br/><br/>
+        <center>
+            <div class="prev_next">
+                <!-- {% if anime.has_previous %}
+                    <a class="prev btn btn-info" href="?page={{anime.previous_page_number}}">Prev</a>
+                {% endif %}
+                {% if blogs.has_next %}
+                    <a class="next btn btn-info" href="?page={{anime.next_page_number}}">Next</a>
+                {% endif %} -->
+                <div class="pages">
+                    <ul>
+                    {% for pg in page_range %}
+                        {% if anime.number == pg %}
+                            <li style="display : inline; list-style-type : none;"><a href="?page={{pg}}" class="btn btn-default">{{pg}}</a></li>
+                        {% else %}
+                            <li style="display : inline; list-style-type : none;"><a href="?page={{pg}}" class="btn">{{pg}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+                <span class="clear_both"></span>
+            </div>
+        </center>
         
 
 
