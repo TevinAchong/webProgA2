@@ -25,13 +25,14 @@
     <!-- Sticky Header -->    
     <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
         <form name="myform" method="POST" action="{% url 'search' %}">  
-            <a href="{% url "index" %}"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
+            <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
             {% csrf_token %}
             <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
         </form> 
     </div>
 
-
+    <a href="/formpage"><button type="button" class="btn btn-danger btn-circle fixed-btn">+</button></a>
+    
 
         {%for an in animesSearch %}
         <div class="col-sm-3" style=" margin-top : 70px;"> <!-- Bootstrap class to align elements into grid of 4 -->
@@ -55,6 +56,7 @@
                 <div style="text-align : center;">Type: {{ an.animeType }}</div>
                 <div style="text-align : center;">Rating: {{ an.rating }}</div>
                 <div style="text-align : center;">Members: {{ an.members }}</div>
+                <div style="text-align : center;">Epsiodes: {{ an.episodes }}</div>
                 <center>
                     <form name="detailsForm" method="POST" action="{% url 'details' %}" >
                         {% csrf_token %}
@@ -74,13 +76,13 @@
 
     {%else%}
     <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
-            <form name="myform" method="POST" action="{% url 'search' %}">  
-                <a href="{% url "index" %}"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
-                {% csrf_token %}
-                <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
-            </form> 
-            
-        </div>
+        <form name="myform" method="POST" action="{% url 'search' %}">  
+            <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
+        </form> 
+        
+    </div>
         <div class="nf">
         </div> 
     {% endif %}

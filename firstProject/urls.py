@@ -30,5 +30,4 @@ urlpatterns = [
     url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     url(r'^register/$', views.register, name='register'),
     url(r'^details/$', views.viewAnime, name='details'),
-
 ]

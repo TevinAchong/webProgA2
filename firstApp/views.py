@@ -137,7 +137,7 @@ def login_view(request):
             user = authenticate(username = userna, password = passwo)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('home/')
             else:
                 messages.error(request, "Invalid user")
     else:

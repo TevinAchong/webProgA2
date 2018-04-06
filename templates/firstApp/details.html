@@ -19,7 +19,7 @@
 
     <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
         <form name="myform" method="POST" action="{% url 'search' %}">  
-            <a href="{% url "index" %}"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
+            <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
             {% csrf_token %}
             <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
         </form> 

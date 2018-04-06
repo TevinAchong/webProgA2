@@ -17,6 +17,7 @@
     
 </head>
 <body>  
+    {% if user.is_authenticated %}
     <header class="headerr">
         <!-- <h1 class="headerr__heading">Anime!!</h1> -->
         <!--Trying Search Functionality -->
@@ -53,7 +54,7 @@
         }
     </script>
 
-    <!-- <button type="button" class="btn btn-primary fixed-btn">Add New Anime</button> -->
+    <a href="/formpage"><button type="button" class="btn btn-primary fixed-btn">Add New Anime</button></a>
     
     
     {% if anime %}
@@ -80,6 +81,7 @@
                     <div style="text-align : center;">Type: {{ an.animeType }}</div>
                     <div style="text-align : center;">Rating: {{ an.rating }}</div>
                     <div style="text-align : center;">Members: {{ an.members }}</div>
+                    <div style="text-align : center;">Epsiodes: {{ an.episodes }}</div>
                     <center>
                         <form name="detailsForm" method="POST" action="{% url 'details' %}" >
                             {% csrf_token %}
@@ -153,7 +155,10 @@
         <p>No Anime Found</p>
     {% endif %}
 
-      
+
+    {% else %}
+        <h2>Please <a href="/">Login</a> to View this Page</h2>
+    {%endif%}
    
 
               
