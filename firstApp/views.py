@@ -2,9 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .anime import Anime
 from .anime import animeForm
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.views import login, logout
+from django.contrib.auth import authenticate
+from django import forms
+from django.contrib import messages
 # Create your views here.
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger ##Importing Modules for Pagination
+
 
 def index(request):
     anime_list = Anime.objects.order_by('name') #--Storing all Anime in a List--#
@@ -86,9 +92,32 @@ def register(request):
         args = {'form':form}
         return render(request, 'firstApp/register.html', args)
 
-def viewAnime(request):
-    args = {'user': request.user}     
-    return render(request, 'firstApp/details.html', args)
+def login_view(request):
+ 
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid:
+            userna = request.POST['username']
+            passwo = request.POST['password']
+            user = authenticate(username = userna, password = passwo)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+            else:
+                messages.error(request, "Invalid user")
+    else:
+        form = AuthenticationForm()
+            
+    return render(request, 'firstApp/login.html', {'form': form} )
+
+# def logout_view(request):
+#     logout(request)
+#     return HttpResponseRedirect('/logout')
+
+
+# def viewAnime(request):
+#     args = {'user': request.user}
+#     return render(request, 'firstApp/animePage.html', args)
 
 # def editAnime(request):
 #     if request.method == 'POST':
@@ -101,4 +130,8 @@ def viewAnime(request):
 #         form = UserChangeForm(instance=request.user)
 #         args = {'form': form }
 #         return render(request, 'firstApp/animePage.html', args)
+
+
+
+
 
