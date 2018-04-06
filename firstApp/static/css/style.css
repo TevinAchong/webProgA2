@@ -51,7 +51,7 @@ body {
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 10000;
+  z-index: 40000;
   /* Sit on top */
   left: 0;
   top: 0;
@@ -73,7 +73,7 @@ body {
   /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 900px;
+  width: 500px;
   /* Could be more or less, depending on screen size */
   height: 700px; }
 
@@ -101,3 +101,17 @@ body {
   z-index: 20000;
   top: 10%;
   left: 80%; }
+
+.nf {
+  height: 100vh;
+  background-image: url("../images/404.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; }
+
+.search-bar {
+  background: black;
+  font-size: 20px;
+  font-family: 'Press Start 2P', cursive; }
+  .search-bar:focus {
+    color: red; }

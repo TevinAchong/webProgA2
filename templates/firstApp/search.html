@@ -17,12 +17,24 @@
 
 </head>
 <body>
-    <a href="{% url "index" %}"><i class="fa fa-home"></i></a>
-    <h1>Search Results...</h1>
+    
 
     {% if animesSearch %}
+   
+    
+    <!-- Sticky Header -->    
+    <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
+        <form name="myform" method="POST" action="{% url 'search' %}">  
+            <a href="{% url "index" %}"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
+        </form> 
+    </div>
+
+
+
         {%for an in animesSearch %}
-        <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 4 -->
+        <div class="col-sm-3" style=" margin-top : 70px;"> <!-- Bootstrap class to align elements into grid of 4 -->
             <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)">
                 <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);"></center> <!-- If the image is unavailable the placeholder image will be used -->
             </object></center>
@@ -47,7 +59,22 @@
             </div>
         </div>
         {%endfor%}
+
+
+    {%else%}
+    <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
+            <form name="myform" method="POST" action="{% url 'search' %}">  
+                <a href="{% url "index" %}"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
+                {% csrf_token %}
+                <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
+            </form> 
+            
+        </div>
+        <div class="nf">
+        </div> 
     {% endif %}
+
+    
 
 
 

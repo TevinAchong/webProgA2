@@ -81,10 +81,16 @@
                     <div style="text-align : center;">Rating: {{ an.rating }}</div>
                     <div style="text-align : center;">Members: {{ an.members }}</div>
                     <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">Edit Anime</button>
-                        <form name="detailsForm" method="POST" action="{% url 'details' %}" >  
+                        <form name="detailsForm" method="POST" action="{% url 'details' %}" >
                             {% csrf_token %}
-                            <input type="submit" name="anime" value="{{an.animeId}}" placeholder="View Details"/>
+                            <input type="submit" name="anime" value="{{an.animeId}}" id="{{an.animeId}}" class="btn btn-success" onclick="changeValue(this.id)"/>
                         </form> 
+                        <script>
+                            function changeValue(theID) {
+                                console.log(theID);
+                                document.getElementById(theID).value = theID;
+                            }
+                        </script>
                        
                 </div>
             </div>

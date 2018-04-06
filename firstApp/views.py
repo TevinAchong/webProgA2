@@ -92,21 +92,15 @@ def register(request):
         args = {'form':form}
         return render(request, 'firstApp/register.html', args)
 
-<<<<<<< HEAD
 def viewAnime(request):
-    #args = {'user': request.user}     
-    #return render(request, 'firstApp/details.html', args)
-         
     aId = request.POST.get('anime')
-        
     print(aId)     
-    
     status = Anime.objects.filter(animeId = aId)
-    #status = Anime(name='anime_name', tagline='Bar')
-    
     return render(request,"firstApp/details.html", {"animeObj" : status})
 
-=======
+
+
+
 def login_view(request):
  
     if request.method == 'POST':
@@ -125,27 +119,6 @@ def login_view(request):
             
     return render(request, 'firstApp/login.html', {'form': form} )
 
-# def logout_view(request):
-#     logout(request)
-#     return HttpResponseRedirect('/logout')
-
-
-# def viewAnime(request):
-#     args = {'user': request.user}
-#     return render(request, 'firstApp/animePage.html', args)
->>>>>>> 0025e0dfcbb64318aa2bed59719b8e90735904fa
-
-# def editAnime(request):
-#     if request.method == 'POST':
-#         form = UserChangeForm(request.POST, instance=request.user)
-
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect('firstApp/animePage.html')
-#     else:
-#         form = UserChangeForm(instance=request.user)
-#         args = {'form': form }
-#         return render(request, 'firstApp/animePage.html', args)
 
 
 
