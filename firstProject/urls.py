@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^search', views.search, name='search'),
     url(r'^home/$', views.index, name='login'),
     url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+    #path(r'login/', views.login_view, name='index'),
     url(r'^register/$', views.register, name='register'),
     url(r'^details/$', views.viewAnime, name='details'),
 ]

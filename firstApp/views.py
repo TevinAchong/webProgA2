@@ -1,40 +1,23 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .anime import Anime
-from .anime import animeForm
+from .anime import Anime, animeForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login, logout
 from django.contrib.auth import authenticate
 from django import forms
 from django.contrib import messages
-# Create your views here.
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger ##Importing Modules for Pagination
+# Create your views here.
+
 
 
 def index(request):
-    #anime_list = Anime.objects.order_by('name') #--Storing all Anime in a List--#
-    
-    #---Trying Pagination---#
-    
-    # page = request.GET.get('page', 1)
-
-    # paginator = Paginator(anime_list, 30)
-    # try:
-    #     animes = paginator.page(page)
-    # except PageNotAnInteger:
-    #     animes = paginator.page(1)
-    # except EmptyPage:
-    #     animes = paginator.page(paginator.num_pages)
-
-
     paginator = Paginator(Anime.objects.order_by('name'), 30)
-
     try:
         page = int(request.GET.get('page', '1'))
     except:
         page = 1
-    
     try:
         animes = paginator.page(page)
     except (EmptyPage, InvalidPage):
@@ -56,31 +39,22 @@ def index(request):
 
 
 
-
 def search(request):        
     if request.method == 'POST':      
-
-
         anime_name = request.POST.getlist('search')
-        #anime_name =  request.GET.getlist('search')
         print(anime_name[0])     
         try:
             status = Anime.objects.filter(name__icontains = anime_name[0])
         except Anime.DoesNotExist:
             status = None
         return render(request,"firstApp/search.html", {"animesSearch" : status})
-
-
     else:
         return render(request,"firstApp/404.html", {})   
     
-    
-
 
 
 def form_name_view(request):
     form = animeForm()
-    
     if request.method == 'POST':
         form = animeForm(request.POST)
 
@@ -108,13 +82,10 @@ def register(request):
         if form.is_valid:
             form.save()
             return HttpResponseRedirect('/')
-    
     else:
         form = UserCreationForm()
-
         args = {'form':form}
         return render(request, 'firstApp/register.html', args)
-
 
 
 
@@ -123,7 +94,6 @@ def viewAnime(request):
     print(aId)     
     status = Anime.objects.filter(animeId = aId)
     return render(request,"firstApp/details.html", {"animeObj" : status})
-
 
 
 
