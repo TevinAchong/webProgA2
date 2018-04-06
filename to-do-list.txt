@@ -1,8 +1,9 @@
 Styles: Use Bootstrap to add Styles -- DONE
 Images: Place a different image for each genre / type -- DONE
-View: Detail Screen for each anime
+View: Detail Screen for each anime --DONE
 Admin: Customize admin area (possibly add form to enter anime)
 Bonus: Modal Window  --DONE
 Static Files: Fix Issue of Static files not being detected -- FIXED
-Pagination for search page
-
+Fix Pagination positioning
+Sorting By: Name A-Z, Name Z-A, Rating Low - High, Rating High - Low
+Filter by Type, Genre

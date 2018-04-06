@@ -14,6 +14,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger ##Impor
 
 def index(request):
     paginator = Paginator(Anime.objects.order_by('name'), 30)
+
+
     try:
         page = int(request.GET.get('page', '1'))
     except:
@@ -69,7 +71,7 @@ def form_name_view(request):
             anime.members = form.cleaned_data['members']
 
             form.save()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("formpage/")
 
     return render(request, 'firstApp/form.html', {'form': form}) ##reloading the form page after submission 
 
