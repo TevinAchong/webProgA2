@@ -5,20 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Details</title>
-    <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{%static "css/style.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
+    <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
 </head>
 <body>
     {% if animeObj %}
-    {% for an in animeObj %}
-    <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 4 -->
-        <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)">
-            <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);"></center> <!-- If the image is unavailable the placeholder image will be used -->
-        </object></center>
-        <div style="text-align : center;  margin-bottom : 50px;">{{ an.name }}</div>
+
+    <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
+        <form name="myform" method="POST" action="{% url 'search' %}">  
+            <a href="{% url "index" %}"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
+        </form> 
     </div>
-    {% endfor %}
+
+        {% for an in animeObj %}
+            <div class="col-sm-3" style=" margin-top : 70px;"> <!-- Bootstrap class to align elements into grid of 4 -->
+                <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 350px; height : 500px;  position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2); float : left;" onclick="getId(this.id)">
+                    <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 350px; height : 500px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2); float : left;"></center> <!-- If the image is unavailable the placeholder image will be used -->
+                </object></center>
+            </div>
+            <p>{{ an.name }}</p>
+        {% endfor %}
 
     {% else %}
         <div class="nf">

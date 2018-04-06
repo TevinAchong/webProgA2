@@ -80,17 +80,18 @@
                     <div style="text-align : center;">Type: {{ an.animeType }}</div>
                     <div style="text-align : center;">Rating: {{ an.rating }}</div>
                     <div style="text-align : center;">Members: {{ an.members }}</div>
-                    <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">Edit Anime</button>
+                    <center>
                         <form name="detailsForm" method="POST" action="{% url 'details' %}" >
                             {% csrf_token %}
                             <input type="submit" name="anime" value="{{an.animeId}}" id="{{an.animeId}}" class="btn btn-success" onclick="changeValue(this.id)"/>
-                        </form> 
-                        <script>
-                            function changeValue(theID) {
-                                console.log(theID);
-                                document.getElementById(theID).value = theID;
-                            }
-                        </script>
+                        </form>
+                    </center> 
+                    <script>
+                        function changeValue(theID) {
+                            console.log(theID);
+                            document.getElementById(theID).value = theID;
+                        }
+                    </script>
                        
                 </div>
             </div>
@@ -125,12 +126,12 @@
         <br/><br/><br/><br/>
         <center>
             <div class="prev_next">
-                <!-- {% if anime.has_previous %}
+                {% if anime.has_previous %}
                     <a class="prev btn btn-info" href="?page={{anime.previous_page_number}}">Prev</a>
                 {% endif %}
                 {% if blogs.has_next %}
                     <a class="next btn btn-info" href="?page={{anime.next_page_number}}">Next</a>
-                {% endif %} -->
+                {% endif %}
                 <div class="pages">
                     <ul>
                     {% for pg in page_range %}

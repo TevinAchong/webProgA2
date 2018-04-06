@@ -21,12 +21,12 @@ from django.conf import settings
 from django.contrib.auth.views import logout
 
 urlpatterns = [
-    path(r'', views.index, name='index'),
+    path(r'', views.login_view, name='index'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     url(r'^formpage/', views.form_name_view, name='form_name'),
     url(r'^search', views.search, name='search'),
-    url(r'^login/$', views.login_view, name='login'),
+    url(r'^home/$', views.index, name='login'),
     url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     url(r'^register/$', views.register, name='register'),
     url(r'^details/$', views.viewAnime, name='details'),
