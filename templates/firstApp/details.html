@@ -30,7 +30,9 @@
                     <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 350px; height : 500px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2); float : left;"></center> <!-- If the image is unavailable the placeholder image will be used -->
                 </object></center>
             </div>
-            <p>{{ an.name }}</p>
+            <div class="col-sm-3">
+                <p>{{ an.name }}</p>
+            </div>
         {% endfor %}
 
     {% else %}

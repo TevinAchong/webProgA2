@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
 from .anime import Anime, animeForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -108,8 +108,11 @@ def login_view(request):
             passwo = request.POST['password']
             user = authenticate(username = userna, password = passwo)
             if user is not None:
-                login(request, user)
-                return HttpResponseRedirect('home/')
+                try:
+                    login(request, user)
+                    return HttpResponseRedirect('home/')
+                except:
+                    return HttpResponseRedirect('/')
             else:
                 messages.error(request, "Invalid user")
     else:
@@ -118,7 +121,9 @@ def login_view(request):
     return render(request, 'firstApp/login.html', {'form': form} )
 
 
-
+def csrf_failure(request, reason=""):
+    ctx = {'message': 'some custom messages'}
+    return render_to_response('firstApp/loginError.html', ctx)
 
 
 

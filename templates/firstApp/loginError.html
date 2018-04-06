@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        An error occured. Please try <a href="/">logging in </a> again.
+        <!-- EXPLANATION 
+            
+            
+            1. Retrieve login page in Tab 1 (with unauthenticated "form" CSRF token)
+            2. Retrieve login page in Tab 2 (with unauthenticated "form" CSRF token)
+            3. Login in Tab 1, CSRF "cookie" token gets cycled server side, browser cookie gets updated
+            4. Try to login in Tab 2, sends new cookie (tabs do not separate sessions), but old "form" token.
+            5. Second login request is rejected (because "form" token and "cookie" token mismatch).
+            
+            This is an interaction between the fact that using multiple browser tabs do not separate sessions and the fact that the login operation cycles the "cookie" CSRF token sent to you by the server.
+
+            Any page loaded before the login operation that takes place in the same session (e.g. in a different browser tab) will now have an incorrect CSRF "form" token.
+    
+        -->
+        </body>
+</html>
