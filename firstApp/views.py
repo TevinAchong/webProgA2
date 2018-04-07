@@ -92,7 +92,6 @@ def register(request):
         args = {'form':form}
         return render(request, 'firstApp/register.html', args)
 
-<<<<<<< HEAD
 def viewAnime(request):
     #args = {'user': request.user}     
     #return render(request, 'firstApp/details.html', args)
@@ -106,7 +105,6 @@ def viewAnime(request):
     
     return render(request,"firstApp/details.html", {"animeObj" : status})
 
-=======
 def login_view(request):
  
     if request.method == 'POST':
@@ -125,6 +123,10 @@ def login_view(request):
             
     return render(request, 'firstApp/login.html', {'form': form} )
 
+def edit(request):
+    aId = request.POST.get('anime')
+    
+
 # def logout_view(request):
 #     logout(request)
 #     return HttpResponseRedirect('/logout')
@@ -133,7 +135,6 @@ def login_view(request):
 # def viewAnime(request):
 #     args = {'user': request.user}
 #     return render(request, 'firstApp/animePage.html', args)
->>>>>>> 0025e0dfcbb64318aa2bed59719b8e90735904fa
 
 # def editAnime(request):
 #     if request.method == 'POST':
