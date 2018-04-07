@@ -31,15 +31,13 @@
         </form> 
     </div>
 
-    <a href="/formpage"><button type="button" class="btn btn-danger btn-circle fixed-btn">+</button></a>
+    <a href="/formpage"><button type="button" class="btn btn-success fixed-add-btn">Add New Anime</button></a>
+    <a href="{%url 'logout'%}"><button type="button" class="btn btn-danger fixed-btn">Logout</button></a>
     
 
         {%for an in animesSearch %}
-        <div class="col-sm-3" style=" margin-top : 70px;"> <!-- Bootstrap class to align elements into grid of 4 -->
-            <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)">
-                <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);"></center> <!-- If the image is unavailable the placeholder image will be used -->
-            </object></center>
-            <div style="text-align : center;  margin-bottom : 50px;">{{ an.name }}</div>
+        <div class="col-sm-3">
+            <center><img id="{{ an.animeId }}" class="myBtnObj" src="{{ an.imageUrl }}" alt="{{ an.name }}" style=" margin-bottom : 50px; width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
         </div>
 
 

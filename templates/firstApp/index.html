@@ -23,7 +23,7 @@
         <!--Trying Search Functionality -->
         <form name="myform" method="POST" action="{% url 'search' %}" class="headerr__heading">  
             {% csrf_token %}
-            <input type="text" name="search" placeholder="Search for Anime..." class="headerr__heading--search"/>
+            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
         </form> 
         
     </header>
@@ -35,9 +35,6 @@
             {% csrf_token %}
             <input type="text" name="search" placeholder="Search for Anime..." class="headerr__heading--search"/>
         </form> 
-        
-        
-
     </div>
     <script>
         window.onscroll = function() {myFunction()};
@@ -54,7 +51,7 @@
         }
     </script>
 
-    <a href="/formpage"><button type="button" class="btn btn-primary fixed-add-btn">Add New Anime</button></a>
+    <a href="/formpage"><button type="button" class="btn btn-success fixed-add-btn">Add New Anime</button></a>
     <a href="{%url 'logout'%}"><button type="button" class="btn btn-danger fixed-btn">Logout</button></a>
     
     

@@ -14,7 +14,6 @@
     <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
 </head>
 <body>
-    {% if animeObj %}
 
     <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
         <form name="myform" method="POST" action="{% url 'search' %}">  
@@ -23,6 +22,13 @@
             <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
         </form> 
     </div>
+
+    <a href="/formpage"><button type="button" class="btn btn-success fixed-add-btn">Add New Anime</button></a>
+    <a href="{%url 'logout'%}"><button type="button" class="btn btn-danger fixed-btn">Logout</button></a>
+
+    {% if animeObj %}
+
+    
 
         {% for an in animeObj %}
             <div class="col-sm-3" style=" margin-top : 70px;"> <!-- Bootstrap class to align elements into grid of 4 -->

@@ -1,3 +1,11 @@
+"""
+
+This script contains the various functions used to populate the database
+
+"""
+
+
+
 import os
 import csv
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'firstProject.settings')
@@ -68,8 +76,8 @@ if __name__ == '__main__':
     #     ani.imageUrl = "{%static \"images/placeholder.png\" %}"
     #     ani.save()
 
-    an = Anime.objects.order_by('name')
-    print(an[4].name)
+    an = Anime.objects.filter(name = 'Monster')
+    an[0].imageUrl = 'http://www.misucell.com/data/out/10/IMG_454899.png'
     
 
 

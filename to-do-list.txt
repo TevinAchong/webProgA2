@@ -4,7 +4,7 @@ View: Detail Screen for each anime --DONE
 Bonus: Modal Window  --DONE
 Static Files: Fix Issue of Static files not being detected -- FIXED
 
-Fix Pagination positioning
+Fix Pagination positioning -- FIXED
 
 Sorting By: Name A-Z, Name Z-A, Rating Low - High, Rating High - Low (Possibly)
 Filter by Type, Genre (Possibly)
