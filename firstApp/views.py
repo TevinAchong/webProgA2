@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponseRedirect
 from .anime import Anime, animeForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -81,13 +81,13 @@ def form_name_view(request):
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
     else:
         form = UserCreationForm()
-        args = {'form':form}
-        return render(request, 'firstApp/register.html', args)
+    args = {'form':form}
+    return render(request, 'firstApp/register.html', args)
 
 
 
@@ -103,7 +103,7 @@ def login_view(request):
  
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
-        if form.is_valid:
+        if form.is_valid():
             userna = request.POST['username']
             passwo = request.POST['password']
             user = authenticate(username = userna, password = passwo)
@@ -119,6 +119,29 @@ def login_view(request):
         form = AuthenticationForm()
             
     return render(request, 'firstApp/login.html', {'form': form} )
+
+    
+
+# def logout_view(request):
+#     logout(request)
+#     return HttpResponseRedirect('/logout')
+
+
+# def viewAnime(request):
+#     args = {'user': request.user}
+#     return render(request, 'firstApp/animePage.html', args)
+
+# def editAnime(request):
+#     if request.method == 'POST':
+#         form = UserChangeForm(request.POST, instance=request.user)
+
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect('firstApp/animePage.html')
+#     else:
+#         form = UserChangeForm(instance=request.user)
+#         args = {'form': form }
+#         return render(request, 'firstApp/animePage.html', args)
 
 
 def csrf_failure(request, reason=""):
