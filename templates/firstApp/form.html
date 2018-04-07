@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Search</title>
+        <title>Add A New Anime</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{%static "css/style.css" %}">
@@ -16,6 +16,9 @@
 </head>
 <body>
 
+    
+
+    {% if user.is_authenticated %}
     <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
         <form name="myform" method="POST" action="{% url 'search' %}">  
             <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
@@ -24,7 +27,11 @@
         </form> 
     </div>
 
-    {% if user.is_authenticated %}
+
+
+
+    <a href="/formpage"><button type="button" class="btn btn-primary fixed-add-btn">Add New Anime</button></a>
+    <a href="{%url 'logout'%}"><button type="button" class="btn btn-danger fixed-btn">Logout</button></a>
 
     <br/><br/>
     <center>

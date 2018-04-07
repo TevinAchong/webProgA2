@@ -102,6 +102,12 @@ body {
   top: 10%;
   left: 80%; }
 
+.fixed-add-btn {
+  position: fixed;
+  z-index: 20000;
+  top: 10%;
+  right: 80%; }
+
 .nf {
   height: 100vh;
   background-image: url("../images/404.jpg");
