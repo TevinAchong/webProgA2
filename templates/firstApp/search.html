@@ -17,12 +17,25 @@
 
 </head>
 <body>
-    <a href="{% url "index" %}"><i class="fa fa-home"></i></a>
-    <h1>Search Results...</h1>
-
+    
+    {% if user.is_authenticated %}
     {% if animesSearch %}
+   
+    
+    <!-- Sticky Header -->    
+    <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
+        <form name="myform" method="POST" action="{% url 'search' %}">  
+            <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
+        </form> 
+    </div>
+
+    <a href="/formpage"><button type="button" class="btn btn-danger btn-circle fixed-btn">+</button></a>
+    
+
         {%for an in animesSearch %}
-        <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 4 -->
+        <div class="col-sm-3" style=" margin-top : 70px;"> <!-- Bootstrap class to align elements into grid of 4 -->
             <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)">
                 <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);"></center> <!-- If the image is unavailable the placeholder image will be used -->
             </object></center>
@@ -43,11 +56,40 @@
                 <div style="text-align : center;">Type: {{ an.animeType }}</div>
                 <div style="text-align : center;">Rating: {{ an.rating }}</div>
                 <div style="text-align : center;">Members: {{ an.members }}</div>
-                <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">Edit Anime</button></center></div>
+                <div style="text-align : center;">Epsiodes: {{ an.episodes }}</div>
+                <center>
+                    <form name="detailsForm" method="POST" action="{% url 'details' %}" >
+                        {% csrf_token %}
+                        <input type="submit" name="anime" value="{{an.animeId}}" id="{{an.animeId}}" class="btn btn-success" onclick="changeValue(this.id)"/>
+                    </form>
+                </center> 
+                <script>
+                    function changeValue(theID) {
+                        console.log(theID);
+                        document.getElementById(theID).value = theID;
+                    }
+                </script>
             </div>
         </div>
         {%endfor%}
+
+
+    {%else%}
+    <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
+        <form name="myform" method="POST" action="{% url 'search' %}">  
+            <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
+        </form> 
+        
+    </div>
+        <div class="nf">
+        </div> 
     {% endif %}
+    {%else %}
+        <h3>Please <a href="/">Login</a> to view this page</h3>
+    {%endif%}
+    
 
 
 

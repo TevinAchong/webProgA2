@@ -4,18 +4,12 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'firstProject.settings')
 import django 
 django.setup()
 from firstApp.models import Anime
-
 from bs4 import BeautifulSoup
 import requests
 import re
-from urllib.request import urlopen
-from urllib.request import Request
-import os
+from urllib.request import urlopen, Request
 from http.cookiejar import CookieJar
 import json
-import re
-
-
 
 def get_soup(url,header):
     return BeautifulSoup(urlopen(Request(url,headers=header)),'html.parser')
@@ -34,8 +28,6 @@ def addImageURL(animeName):
     #print(url)
     
     header={'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
-
-    
 
     try:
         soup = get_soup(url,header)
@@ -65,17 +57,19 @@ def populateAnime():
 
             rowCount += 1 #---Moving past the anime.csv header
             
-            
-            #####-------------------------------------Doing Google Search for Images-----------------------------------#######
-            #####-----------------------------------------------------------------------------------------------------#######
-
 
 if __name__ == '__main__':
     print("Adding anime to Database....")
-    populateAnime()
+    #populateAnime()
     #addImageURL('MÄR')
+    # an = Anime.objects.filter(imageUrl = '{%static "images/placeholder.png" %}')
+    # for ani in an:
+    #     print(ani)
+    #     ani.imageUrl = "{%static \"images/placeholder.png\" %}"
+    #     ani.save()
 
-
+    an = Anime.objects.order_by('name')
+    print(an[4].name)
     
 
 

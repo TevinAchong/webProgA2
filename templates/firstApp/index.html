@@ -17,6 +17,7 @@
     
 </head>
 <body>  
+    {% if user.is_authenticated %}
     <header class="headerr">
         <!-- <h1 class="headerr__heading">Anime!!</h1> -->
         <!--Trying Search Functionality -->
@@ -53,7 +54,8 @@
         }
     </script>
 
-    <!-- <button type="button" class="btn btn-primary fixed-btn">Add New Anime</button> -->
+    <a href="/formpage"><button type="button" class="btn btn-primary fixed-btn">Add New Anime</button></a><br>
+    <a href="{%url 'logout'%}"><button type="button" class="btn btn-danger fixed-btn">Logout</button></a>
     
     
     {% if anime %}
@@ -80,11 +82,19 @@
                     <div style="text-align : center;">Type: {{ an.animeType }}</div>
                     <div style="text-align : center;">Rating: {{ an.rating }}</div>
                     <div style="text-align : center;">Members: {{ an.members }}</div>
-                    <div style="text-align : center;"></div><center><button type="button" class="btn btn-danger">Edit Anime</button>
-                        <form name="detailsForm" method="POST" action="{% url 'details' %}" >  
+                    <div style="text-align : center;">Epsiodes: {{ an.episodes }}</div>
+                    <center>
+                        <form name="detailsForm" method="POST" action="{% url 'details' %}" >
                             {% csrf_token %}
-                            <input type="submit" name="anime" value="{{an.animeId}}" placeholder="View Details"/>
-                        </form> 
+                            <input type="submit" name="anime" value="{{an.animeId}}" id="{{an.animeId}}" class="btn btn-success" onclick="changeValue(this.id)"/>
+                        </form>
+                    </center> 
+                    <script>
+                        function changeValue(theID) {
+                            console.log(theID);
+                            document.getElementById(theID).value = theID;
+                        }
+                    </script>
                        
                 </div>
             </div>
@@ -94,7 +104,7 @@
 
         <!-- Classes below use bootstrap 3 to format the paginated pages and menus -->
         
-        {% if anime.has_other_pages %}
+        <!-- {% if anime.has_other_pages %}
             <ul class="pagination">
                 {% if anime.has_previous %}
                     <li><a href="?page={{ anime.previous_page_number }}"> &laquo; </a></li>
@@ -114,9 +124,31 @@
                     <li class="disabled"><span> &raquo; </span></li>
                 {% endif %}
             </ul>
-        {% endif %}
-
-
+        {% endif %} -->
+        
+        <br/><br/><br/><br/>
+        <center>
+            <div class="prev_next">
+                {% if anime.has_previous %}
+                    <a class="prev btn btn-info" href="?page={{anime.previous_page_number}}">Prev</a>
+                {% endif %}
+                {% if blogs.has_next %}
+                    <a class="next btn btn-info" href="?page={{anime.next_page_number}}">Next</a>
+                {% endif %}
+                <div class="pages">
+                    <ul>
+                    {% for pg in page_range %}
+                        {% if anime.number == pg %}
+                            <li style="display : inline; list-style-type : none;"><a href="?page={{pg}}" class="btn btn-default">{{pg}}</a></li>
+                        {% else %}
+                            <li style="display : inline; list-style-type : none;"><a href="?page={{pg}}" class="btn">{{pg}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+                <span class="clear_both"></span>
+            </div>
+        </center>
         
 
 
@@ -124,7 +156,10 @@
         <p>No Anime Found</p>
     {% endif %}
 
-      
+
+    {% else %}
+        <h2>Please <a href="/">Login</a> to View this Page</h2>
+    {%endif%}
    
 
               

@@ -2,22 +2,44 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>New Anime</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Search</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{%static "css/style.css" %}">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
+        <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
 </head>
 <body>
-        <div class="container">
-                <form class= "form-horizontal" method="POST">
-                    {{form.as_p}}
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-primary btn-lg " value="Submit">
-                </form>
-        
-            </div>
-    
+
+    <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
+        <form name="myform" method="POST" action="{% url 'search' %}">  
+            <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
+        </form> 
+    </div>
+
+    {% if user.is_authenticated %}
+
+    <br/><br/>
+    <center>
+        <div class="container" style="margin-top : 70px;">
+            <form class= "form-horizontal" method="POST">
+                {{form.as_p}}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-lg " value="Submit">
+            </form>
+
+        </div>
+    </center>
+
+    {%else %}
+        <h3>Please <a href="/">Login</a> to Add a New Anime</h3>
+    {%endif%}
 </body>
 </html>
