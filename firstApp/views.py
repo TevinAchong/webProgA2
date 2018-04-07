@@ -13,7 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger ##Impor
 
 
 def index(request):
-    paginator = Paginator(Anime.objects.order_by('name'), 30)
+    paginator = Paginator(Anime.objects.order_by('name'), 36)
 
 
     try:

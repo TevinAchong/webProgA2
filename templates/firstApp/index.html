@@ -61,12 +61,19 @@
     {% if anime %}
         {% for an in anime %}
             
-            <div class="col-sm-3"> <!-- Bootstrap class to align elements into grid of 4 -->
+            <!-- <div class="col-sm-3">  
                 <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)">
-                    <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);"></center> <!-- If the image is unavailable the placeholder image will be used -->
+                    <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);"></center> 
                 </object></center>
                 <div style="text-align : center;  margin-bottom : 50px;">{{ an.name }}</div>
+            </div> -->
+
+            <div class="col-sm-3">
+                <center><img id="{{ an.animeId }}" class="myBtnObj" src="{{ an.imageUrl }}" alt="{{ an.name }}" style=" margin-bottom : 50px; width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
+                
             </div>
+            
+
 
 
             <div id="{{ an.animeId }}" class="modal">
@@ -102,41 +109,14 @@
 
         {% endfor %}
 
-        <!-- Classes below use bootstrap 3 to format the paginated pages and menus -->
-        
-        <!-- {% if anime.has_other_pages %}
-            <ul class="pagination">
-                {% if anime.has_previous %}
-                    <li><a href="?page={{ anime.previous_page_number }}"> &laquo; </a></li>
-                {% else %}
-                    <li class="disabled"><span> &laquo; </span></li>
-                {% endif %}
-                {%for i in anime.paginator.page_range %}
-                    {%if anime.number == i %}
-                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                    {% else %}
-                        <li><a href="?page={{ i }}">{{ i }}</a></li>  
-                    {% endif %}
-                {% endfor %}
-                {% if anime.has_next %}
-                    <li><a href="?page={{ anime.next_page_number }}"> &raquo; </a></li>
-                {% else %}
-                    <li class="disabled"><span> &raquo; </span></li>
-                {% endif %}
-            </ul>
-        {% endif %} -->
-        
-        <br/><br/><br/><br/>
         <center>
             <div class="prev_next">
-                {% if anime.has_previous %}
-                    <a class="prev btn btn-info" href="?page={{anime.previous_page_number}}">Prev</a>
-                {% endif %}
-                {% if blogs.has_next %}
-                    <a class="next btn btn-info" href="?page={{anime.next_page_number}}">Next</a>
-                {% endif %}
+                
                 <div class="pages">
                     <ul>
+                    {% if anime.has_previous %}
+                        <a class="prev btn btn-info" href="?page={{anime.previous_page_number}}">Prev</a>
+                    {% endif %}
                     {% for pg in page_range %}
                         {% if anime.number == pg %}
                             <li style="display : inline; list-style-type : none;"><a href="?page={{pg}}" class="btn btn-default">{{pg}}</a></li>
@@ -144,6 +124,9 @@
                             <li style="display : inline; list-style-type : none;"><a href="?page={{pg}}" class="btn">{{pg}}</a></li>
                         {% endif %}
                     {% endfor %}
+                    {% if anime.has_next %}
+                        <a class="next btn btn-info" href="?page={{anime.next_page_number}}">Next</a>
+                    {% endif %}
                     </ul>
                 </div>
                 <span class="clear_both"></span>
