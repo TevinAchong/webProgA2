@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponseRedirect
 from .anime import Anime, animeForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -81,13 +81,13 @@ def form_name_view(request):
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
     else:
         form = UserCreationForm()
-        args = {'form':form}
-        return render(request, 'firstApp/register.html', args)
+    args = {'form':form}
+    return render(request, 'firstApp/register.html', args)
 
 
 
@@ -103,7 +103,7 @@ def login_view(request):
  
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
-        if form.is_valid:
+        if form.is_valid():
             userna = request.POST['username']
             passwo = request.POST['password']
             user = authenticate(username = userna, password = passwo)
@@ -120,8 +120,6 @@ def login_view(request):
             
     return render(request, 'firstApp/login.html', {'form': form} )
 
-def edit(request):
-    aId = request.POST.get('anime')
     
 
 # def logout_view(request):
