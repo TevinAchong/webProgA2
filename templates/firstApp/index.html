@@ -9,94 +9,85 @@
     <title>Anime!!</title>
     <link rel="stylesheet" href="{%static "css/style.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
     <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
+    <link rel="stylesheet" href="{%static "css/bootstrap.css" %}">
     
 </head>
 <body>  
     {% if user.is_authenticated %}
-    <header class="headerr">
-        <!-- <h1 class="headerr__heading">Anime!!</h1> -->
-        <!--Trying Search Functionality -->
-        <form name="myform" method="POST" action="{% url 'search' %}" class="headerr__heading">  
-            {% csrf_token %}
-            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
-        </form> 
-        
-    </header>
     
-    <!-- Sticky Header -->    
-    <div class="notice header" id = "myHeader">
-        <center><h4> Note: Some Information may be inaccurate due to naming inconsistencies in dataset. WARNING!!! MAY CONTAIN MATURE CONTENT </h4></center>
-        <form name="myform" method="POST" action="{% url 'search' %}" class="headerr__heading">  
-            {% csrf_token %}
-            <input type="text" name="search" placeholder="Search for Anime..." class="headerr__heading--search"/>
-        </form> 
-    </div>
-    <script>
-        window.onscroll = function() {myFunction()};
-        
-        var header = document.getElementById("myHeader");
-        var sticky = header.offsetTop;
-        
-        function myFunction() {
-            if (window.pageYOffset >= sticky) {
-            header.classList.add("sticky");
-            } else {
-            header.classList.remove("sticky");
-            }
-        }
-    </script>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container">
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a href="/home" class="navbar-brand"><img src="{%static "images/favicon.png" %}" alt="Logo"></a>
+          <center>
+          <form name="myform" method="POST" action="{% url 'search' %}"> 
+                {% csrf_token %}
+                <input type="text" name="search" placeholder="Search for Anime..."/>
+            </form>
+        </center> 
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto"> <!-- Margin Left Auto -->
+                
+                <li class="nav-item">
+                    <a href="/formpage" class="nav-link btn btn-success">Add New Anime</a>
+                </li>
 
-    <a href="/formpage"><button type="button" class="btn btn-success fixed-add-btn">Add New Anime</button></a>
-    <a href="{%url 'logout'%}"><button type="button" class="btn btn-danger fixed-btn">Logout</button></a>
-    
+                <li class="nav-item">
+                    <a href="{%url 'logout'%}" class="btn btn-danger nav-link">Logout</a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      </nav>
+
     
     {% if anime %}
-        {% for an in anime %}
+    <div id="home">
+        <div class="container">
+            <div class="row">
+                {% for an in anime %}
+                    <div class="col-sm-3">
+                        <center><img id="{{ an.animeId }}" class="myBtnObj" src="{{ an.imageUrl }}" alt="{{ an.name }}" style=" margin-top : 50px; width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
+                        <div style="text-align : center;">{{ an.name }}</div>
+                    </div>
+                    
+                    <div id="{{ an.animeId }}" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <center><img id="{{ an.animeId }}" src="{{ an.imageUrl }}" alt="{{ an.name }}" style=" margin-bottom : 50px; width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
+                            <br/>
+                            <div style="text-align : center;">Name: {{ an.name }}</div>
+                            <div style="text-align : center;">Genre(s): {{ an.genre }}</div>
+                            <div style="text-align : center;">Type: {{ an.animeType }}</div>
+                            <div style="text-align : center;">Rating: {{ an.rating }}</div>
+                            <div style="text-align : center;">Members: {{ an.members }}</div>
+                            <div style="text-align : center;">Epsiodes: {{ an.episodes }}</div>
+                            <center>
+                                <form name="detailsForm" method="POST" action="{% url 'details' %}" >
+                                    {% csrf_token %}
+                                    <input type="submit" name="anime" value="{{an.animeId}}" id="{{an.animeId}}" class="btn btn-success" onclick="changeValue(this.id)"/>
+                                </form>
+                            </center> 
+                            <script>
+                                function changeValue(theID) {
+                                    console.log(theID);
+                                    document.getElementById(theID).value = theID;
+                                }
+                            </script>
+                            
+                        </div>
+                    </div>
 
-            <div class="col-sm-3">
-                <center><img id="{{ an.animeId }}" class="myBtnObj" src="{{ an.imageUrl }}" alt="{{ an.name }}" style=" margin-bottom : 50px; width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
+
+                {% endfor %}
             </div>
-            
-
-
-
-            <div id="{{ an.animeId }}" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                        <center><object class="myBtn" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; border-radius : 5px;">
-                            <center><img class="myBtn" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; border-radius : 5px;"></center> <!-- If the image is unavailable the placeholder image will be used -->
-                        </object></center>
-                    <br/>
-                    <div style="text-align : center;">Name: {{ an.name }}</div>
-                    <div style="text-align : center;">Genre(s): {{ an.genre }}</div>
-                    <div style="text-align : center;">Type: {{ an.animeType }}</div>
-                    <div style="text-align : center;">Rating: {{ an.rating }}</div>
-                    <div style="text-align : center;">Members: {{ an.members }}</div>
-                    <div style="text-align : center;">Epsiodes: {{ an.episodes }}</div>
-                    <center>
-                        <form name="detailsForm" method="POST" action="{% url 'details' %}" >
-                            {% csrf_token %}
-                            <input type="submit" name="anime" value="{{an.animeId}}" id="{{an.animeId}}" class="btn btn-success" onclick="changeValue(this.id)"/>
-                        </form>
-                    </center> 
-                    <script>
-                        function changeValue(theID) {
-                            console.log(theID);
-                            document.getElementById(theID).value = theID;
-                        }
-                    </script>
-                       
-                </div>
-            </div>
-
-
-        {% endfor %}
+        </div>
 
         <center>
             <div class="prev_next">
@@ -121,6 +112,7 @@
                 <span class="clear_both"></span>
             </div>
         </center>
+    </div>
         
 
 
@@ -131,13 +123,25 @@
 
     {% else %}
         <h2>Please <a href="/">Login</a> to View this Page</h2>
+        {%with 1 as count %}
+        <div id="counter">
+            {{ count }}
+        </div>
+        <script>
+            document.getElementById("counter").innerHTML = parseInt(document.getElementById("counter").innerHTML) + 1;
+            console.log(document.getElementById("counter").id);
+        </script>
+        {%endwith%}
     {%endif%}
    
 
               
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- jQuery library -->
+
 <script src="{%static "js/modal.js" %}"></script>
 
+<script src="{%static "js/jquery.min.js" %}"></script>
+  <script src="{%static "js/popper.min.js" %}"></script>
+  <script src="{%static "js/bootstrap.min.js" %}"></script>
 </body>
 </html>

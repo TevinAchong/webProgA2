@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
+    <link rel="stylesheet" href="{%static "css/bootstrap.css" %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{%static "css/style.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
@@ -22,22 +23,40 @@
     {% if animesSearch %}
    
     
-    <!-- Sticky Header -->    
-    <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
-        <form name="myform" method="POST" action="{% url 'search' %}">  
-            <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
-            {% csrf_token %}
-            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
-        </form> 
-    </div>
-
-    <a href="/formpage"><button type="button" class="btn btn-success fixed-add-btn">Add New Anime</button></a>
-    <a href="{%url 'logout'%}"><button type="button" class="btn btn-danger fixed-btn">Logout</button></a>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <div class="container">
+              <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <a href="/home" class="navbar-brand"><img src="{%static "images/favicon.png" %}" alt="Logo"></a>
+              <center>
+              <form name="myform" method="POST" action="{% url 'search' %}"> 
+                    {% csrf_token %}
+                    <input type="text" name="search" placeholder="Search for Anime..."/>
+                </form>
+            </center> 
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto"> <!-- Margin Left Auto -->
+                    
+                    <li class="nav-item">
+                        <a href="/formpage" class="nav-link btn btn-success">Add New Anime</a>
+                    </li>
     
-
+                    <li class="nav-item">
+                        <a href="{%url 'logout'%}" class="btn btn-danger nav-link">Logout</a>
+                    </li>
+                    
+                </ul>
+              </div>
+            </div>
+          </nav>
+    <div id="home">
+            <div class="container">
+                <div class="row">
         {%for an in animesSearch %}
         <div class="col-sm-3">
-            <center><img id="{{ an.animeId }}" class="myBtnObj" src="{{ an.imageUrl }}" alt="{{ an.name }}" style=" margin-bottom : 50px; width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
+            <center><img id="{{ an.animeId }}" class="myBtnObj" src="{{ an.imageUrl }}" alt="{{ an.name }}" style=" margin-top : 50px; width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onclick="getId(this.id)" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
+            <div style="text-align : center;">{{ an.name }}</div>
         </div>
 
 
@@ -45,9 +64,7 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                    <center><object class="myBtn" data="{{ an.imageUrl }}" type="image/png" style="width : 200px; height : 300px;  position : relative; border-radius : 5px;">
-                        <center><img class="myBtn" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; border-radius : 5px;"></center> <!-- If the image is unavailable the placeholder image will be used -->
-                    </object></center>
+                <center><img id="{{ an.animeId }}" class="myBtnObj" src="{{ an.imageUrl }}" alt="{{ an.name }}" style=" margin-bottom : 50px; width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
                 <br/>
                 <div style="text-align : center;">Name: {{ an.name }}</div>
                 <div style="text-align : center;">Genre(s): {{ an.genre }}</div>
@@ -70,17 +87,38 @@
             </div>
         </div>
         {%endfor%}
+        </div>
+        </div>
 
-
-    {%else%}
-    <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
-        <form name="myform" method="POST" action="{% url 'search' %}">  
-            <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
-            {% csrf_token %}
-            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
-        </form> 
-        
     </div>
+    {%else%}
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <div class="container">
+              <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <a href="/home" class="navbar-brand"><img src="{%static "images/favicon.png" %}" alt="Logo"></a>
+              <center>
+              <form name="myform" method="POST" action="{% url 'search' %}"> 
+                    {% csrf_token %}
+                    <input type="text" name="search" placeholder="Search for Anime..."/>
+                </form>
+            </center> 
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto"> <!-- Margin Left Auto -->
+                    
+                    <li class="nav-item">
+                        <a href="/formpage" class="nav-link btn btn-success">Add New Anime</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a href="{%url 'logout'%}" class="btn btn-danger nav-link">Logout</a>
+                    </li>
+                    
+                </ul>
+              </div>
+            </div>
+          </nav>
         <div class="nf">
         </div> 
     {% endif %}
@@ -91,7 +129,10 @@
 
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- jQuery library -->
+   
 <script src="{%static "js/modal.js" %}"></script>
+<script src="{%static "js/jquery.min.js" %}"></script>
+  <script src="{%static "js/popper.min.js" %}"></script>
+  <script src="{%static "js/bootstrap.min.js" %}"></script>
 </body>
 </html>
