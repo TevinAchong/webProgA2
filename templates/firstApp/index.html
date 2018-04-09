@@ -60,7 +60,7 @@
                         <!-- Modal content -->
                         <div class="modal-content">
                             <span class="close">&times;</span>
-                            <center><img id="{{ an.animeId }}" src="{{ an.imageUrl }}" alt="{{ an.name }}" style=" margin-bottom : 50px; width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
+                            <center><img id="{{ an.animeId }}" src="{{ an.imageUrl }}" alt="{{ an.name }}" style="width : 200px; height : 300px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2);" onerror="this.src='{%static "images/placeholder.png" %}'"></center>
                             <br/>
                             <div style="text-align : center;">Name: {{ an.name }}</div>
                             <div style="text-align : center;">Genre(s): {{ an.genre }}</div>
