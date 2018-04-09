@@ -10,8 +10,8 @@ Have Django installed.
 
 cd to the cloned folder
 
-----------------------------------
+```
 python manage.py runserver
-----------------------------------
+```
 
 the admin page is located at: domainname/admin

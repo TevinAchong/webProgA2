@@ -66,6 +66,8 @@ def populateAnime():
             rowCount += 1 #---Moving past the anime.csv header
             
 
+
+#---- This is where the anime were actually added to the DB ----#
 if __name__ == '__main__':
     print("Adding anime to Database....")
     #populateAnime()
@@ -76,8 +78,10 @@ if __name__ == '__main__':
     #     ani.imageUrl = "{%static \"images/placeholder.png\" %}"
     #     ani.save()
 
-    an = Anime.objects.filter(name = 'Monster')
-    an[0].imageUrl = 'http://www.misucell.com/data/out/10/IMG_454899.png'
+    # an = Anime.objects.filter(name = 'Monster')
+    # an[0].imageUrl = 'http://www.misucell.com/data/out/10/IMG_454899.png'
+
+
     
 
 
