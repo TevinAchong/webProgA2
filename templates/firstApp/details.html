@@ -48,14 +48,25 @@
     
 
         {% for an in animeObj %}
+            <div class="container">
+                <div class="row">
             <div class="col-sm-3" style=" margin-top : 70px;"> <!-- Bootstrap class to align elements into grid of 4 -->
                 <center><object id="{{ an.animeId }}"class="myBtnObj" data="{{ an.imageUrl }}" type="image/png" style="width : 350px; height : 500px;  position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2); float : left;" onclick="getId(this.id)">
                     <center><img id="{{ an.animeId }}" class="myBtnPla" src="{%static "images/placeholder.png" %}" alt="{{ an.name }}" style="width : 350px; height : 500px; border : 1px solid black; position : relative; box-shadow : 0 20px 40px rgba(0,0,0,0.2); float : left;"></center> <!-- If the image is unavailable the placeholder image will be used -->
                 </object></center>
+                <p>ID: {{ an.animeId }}</p>
+                <p>Name: {{ an.name }}</p>
+                <p>Genre: {{ an.genre }}</p>
+                <p>Type: {{ an.animeType }}</p>
+                <p>Rating: {{ an.rating }}</p>
+                <p>Members: {{ an.members }}</p>
+                <p>Episodes: {{ an.episodes }}</p>
             </div>
-            <div class="col-sm-3">
-                <p>{{ an.name }}</p>
+            
+                
+            
             </div>
+        </div>
         {% endfor %}
 
     {% else %}
