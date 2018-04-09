@@ -8,12 +8,10 @@
     <title>Search</title>
     <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
     <link rel="stylesheet" href="{%static "css/bootstrap.css" %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{%static "css/style.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
-    <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
 
 
 </head>
@@ -75,7 +73,7 @@
                 <center>
                     <form name="detailsForm" method="POST" action="{% url 'details' %}" >
                         {% csrf_token %}
-                        <input type="submit" name="anime" value="{{an.animeId}}" id="{{an.animeId}}" class="btn btn-success" onclick="changeValue(this.id)"/>
+                        <button type="submit" name="anime" value="{{an.animeId}}" id="{{an.animeId}}" class="btn btn-success">View Details</button>  <!-- onclick="changeValue(this.id)" -->
                     </form>
                 </center> 
                 <script>
@@ -122,6 +120,7 @@
         <div class="nf">
         </div> 
     {% endif %}
+
     {%else %}
         <h3>Please <a href="/">Login</a> to view this page</h3>
     {%endif%}

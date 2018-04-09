@@ -50,14 +50,16 @@
     <center>
         <div class="container" style="margin-top : 70px;">
             <form class= "form-horizontal" method="POST">
+                <div class="form-control">
                 {{form.as_p}}
+            </div>
                 {% csrf_token %}
                 <input type="submit" class="btn btn-primary btn-lg " value="Submit">
             </form>
 
         </div>
     </center>
-</div>
+    </div>
 
     {%else %}
         <h3>Please <a href="/">Login</a> to Add a New Anime</h3>

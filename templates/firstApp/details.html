@@ -6,25 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{%static "css/style.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
     <link rel="icon" href="{%static "images/favicon.png" %}" type="image/png">
+    <link rel="stylesheet" href="{%static "css/bootstrap.css" %}">
 </head>
 <body>
 
-    <div class="notice header" id = "myHeader" style="position : fixed; width : 100%; z-index : 30000;">
-        <form name="myform" method="POST" action="{% url 'search' %}">  
-            <a href="/home"><i class="fa fa-home" style="float : left; font-size : 30px; color : red;"></i></a>
-            {% csrf_token %}
-            <input type="text" name="search" placeholder="Search for Anime..." class="search-bar"/>
-        </form> 
-    </div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <div class="container">
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <a href="/home" class="navbar-brand"><img src="{%static "images/favicon.png" %}" alt="Logo"></a>
+                <center>
+                <form name="myform" method="POST" action="{% url 'search' %}"> 
+                    {% csrf_token %}
+                    <input type="text" name="search" placeholder="Search for Anime..."/>
+                </form>
+            </center> 
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto"> <!-- Margin Left Auto -->
+                    
+                    <li class="nav-item">
+                        <a href="/formpage" class="nav-link btn btn-success">Add New Anime</a>
+                    </li>
 
-    <a href="/formpage"><button type="button" class="btn btn-success fixed-add-btn">Add New Anime</button></a>
-    <a href="{%url 'logout'%}"><button type="button" class="btn btn-danger fixed-btn">Logout</button></a>
+                    <li class="nav-item">
+                        <a href="{%url 'logout'%}" class="btn btn-danger nav-link">Logout</a>
+                    </li>
+                    
+                </ul>
+                </div>
+            </div>
+            </nav>
 
     {% if animeObj %}
 
@@ -45,6 +62,8 @@
         <div class="nf">
         </div>
     {% endif %}
-
+    <script src="{%static "js/jquery.min.js" %}"></script>
+    <script src="{%static "js/popper.min.js" %}"></script>
+    <script src="{%static "js/bootstrap.min.js" %}"></script>
 </body>
 </html>

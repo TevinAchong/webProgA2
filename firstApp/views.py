@@ -13,7 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger ##Impor
 
 
 def index(request):
-    paginator = Paginator(Anime.objects.order_by('name'), 36)
+    paginator = Paginator(Anime.objects.order_by('name'), 16)
 
 
     try:
@@ -119,29 +119,6 @@ def login_view(request):
         form = AuthenticationForm()
             
     return render(request, 'firstApp/login.html', {'form': form} )
-
-    
-
-# def logout_view(request):
-#     logout(request)
-#     return HttpResponseRedirect('/logout')
-
-
-# def viewAnime(request):
-#     args = {'user': request.user}
-#     return render(request, 'firstApp/animePage.html', args)
-
-# def editAnime(request):
-#     if request.method == 'POST':
-#         form = UserChangeForm(request.POST, instance=request.user)
-
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect('firstApp/animePage.html')
-#     else:
-#         form = UserChangeForm(instance=request.user)
-#         args = {'form': form }
-#         return render(request, 'firstApp/animePage.html', args)
 
 
 def csrf_failure(request, reason=""):
