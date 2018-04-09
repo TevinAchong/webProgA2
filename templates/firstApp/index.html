@@ -74,12 +74,6 @@
                                     <button type="submit" name="anime" value="{{an.animeId}}" id="{{an.animeId}}" class="btn btn-success">View Details</button>  <!-- onclick="changeValue(this.id)" -->
                                 </form>
                             </center> 
-                            <script>
-                                document.getElementsByClassName("view-details-link")[0].onclick = function() {
-                                    document.getElementsByClassName("view-details-link")[0].value = document.getElementsByClassName("view-details-link")[0];
-                                    console.log(document.getElementById("details-link-form").action);
-                                };
-                            </script>
                             
                         </div>
                     </div>
@@ -123,15 +117,6 @@
 
     {% else %}
         <h2>Please <a href="/">Login</a> to View this Page</h2>
-        {%with 1 as count %}
-        <div id="counter">
-            {{ count }}
-        </div>
-        <script>
-            document.getElementById("counter").innerHTML = parseInt(document.getElementById("counter").innerHTML) + 1;
-            console.log(document.getElementById("counter").id);
-        </script>
-        {%endwith%}
     {%endif%}
    
 
