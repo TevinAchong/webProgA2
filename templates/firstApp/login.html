@@ -20,7 +20,7 @@
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a href="/home" class="navbar-brand"><img src="{%static "images/favicon.png" %}" alt="Logo"></a>
+        <a href="#" class="navbar-brand"><img src="{%static "images/favicon.png" %}" alt="Logo"></a>
         
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav ml-auto"> <!-- Margin Left Auto -->
@@ -39,6 +39,14 @@
     </nav>
   <br><br>
   <div class = "container" style="padding-top : 100px;">
+    
+    
+    <h1>Test Credentials</h1>
+    <p>Username: johndoe</p>
+    <p>Password: password123</p>
+
+
+
     <div class="wrapper">
       <form method="POST" class="form-signin">       
         {% csrf_token %}
